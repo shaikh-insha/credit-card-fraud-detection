@@ -2,6 +2,10 @@
 
 Detecting fraudulent transactions is essential in financial systems. This project uses various machine learning models, handles class imbalance with SMOTE, and evaluates models based on their fraud detection performance.
 
+## 📌 Project Overview
+
+This project aims to build and evaluate ML models for credit card fraud detection. It uses a synthetic dataset, performs data analysis, balances class distribution using SMOTE, and compares model performance using accuracy and F1-score.
+
 ---
 
 ## 📁 Dataset
