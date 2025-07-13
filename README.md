@@ -1,52 +1,112 @@
-# 💳 Credit Card Fraud Detection
+# 💳 Credit Card Fraud Detection with ML & SMOTE
 
-This project applies machine learning algorithms to detect fraudulent credit card transactions. It compares Logistic Regression and Random Forest using a synthetic dataset, implements SMOTE to address class imbalance, and visualizes results using confusion matrices and bar charts.
+Detecting fraudulent transactions is essential in financial systems. This project uses various machine learning models, handles class imbalance with SMOTE, and evaluates models based on their fraud detection performance.
 
-A machine learning project to classify fraudulent credit card transactions using Logistic Regression and Random Forest. Includes SMOTE for class balancing, EDA, and detailed evaluation.
+---
 
 ## 📁 Dataset
-A small sample dataset (`credit_card_data.csv`) with:
-- Transaction details
-- Customer info (age, gender, income, etc.)
-- Fraud label (1 = fraud, 0 = not fraud)
+
+The dataset `credit_card_data.csv` includes synthetic data with:
+
+- `TransactionID`: Unique identifier  
+- `TransactionAmount`: Amount in USD  
+- `TransactionTime`: Time since the first transaction  
+- `MerchantCategory`: Retail / Online / Restaurant / Travel  
+- `CustomerAge`: Age (18–80)  
+- `CustomerGender`: Male / Female  
+- `CustomerIncome`: Income in USD (20,000–200,000)  
+- `TransactionLocation`: Urban / Suburban / Rural  
+- `PreviousFraudCount`: Count in past 6 months (0–5)  
+- `Fraud`: Target variable (1 = fraud, 0 = not fraud)
+
+---
 
 ## ⚙️ Features Used
-- Transaction Amount, Time, Merchant Category
-- Customer Age, Gender, Income
-- Transaction Location
-- Past Fraud Count
+
+- `TransactionAmount`, `TransactionTime`
+- `MerchantCategory`, `CustomerAge`, `CustomerGender`
+- `CustomerIncome`, `TransactionLocation`
+- `PreviousFraudCount`
+
+---
 
 ## 🔍 Exploratory Data Analysis (EDA)
-- Correlation matrix
-- Distribution plots
-- Box plots for fraud vs amount
 
-| **Model**             | **Accuracy** |
-|-----------------------|--------------|
-| Logistic Regression   | 61.11%       |
-| Random Forest         | 63.33%       |
+- 📊 Correlation matrix
+- 📦 Box plots (e.g., Fraud vs Amount)
+- 📈 Fraud distribution bar chart
+- 🧮 Count plots for categorical features
 
-> Random Forest performed better, especially on imbalanced data.
+---
+
+## 🧠 Machine Learning Models Used
+
+| Model                | Accuracy   |
+|---------------------|------------|
+| Logistic Regression | 61.11%     |
+| Random Forest       | 63.33%     |
+| KNN                 | (Evaluated by F1-Score) |
+| Decision Tree       | (Evaluated by F1-Score) |
+| SVM (with SMOTE)    | (Evaluated by F1-Score) |
+
+---
+
+## 📈 F1-Score Comparison (Class 1: Fraud)
+
+| Model                | F1-Score (Fraud Class) |
+|---------------------|------------------------|
+| Logistic Regression | 0.66                   |
+| KNN                 | 0.75                   |
+| Random Forest       | 0.78 ✅                |
+| Decision Tree       | 0.72                   |
+| SVM (with SMOTE)    | 0.71                   |
+
+> ✅ **Random Forest** achieved the best fraud detection performance with an F1-score of 0.78.
+
+---
 
 ## 📊 Visualizations
-- Accuracy bar chart
-  <img width="723" height="504" alt="Screenshot 2025-07-13 at 12 14 06 pm" src="https://github.com/user-attachments/assets/5463131e-9663-4f50-bcbe-1e82431d8620" />
 
-- Confusion matrix plots
-  x---
-- Class-wise precision, recall, and F1-score
-<img width="615" height="257" alt="Screenshot 2025-07-13 at 12 14 51 pm" src="https://github.com/user-attachments/assets/7dbcfe86-29c9-49ba-be9c-d1dac6fc4261" />
-<img width="631" height="256" alt="Screenshot 2025-07-13 at 12 15 09 pm" src="https://github.com/user-attachments/assets/a4392b14-6187-4a19-a1d0-10b2fc4fc6d1" />
+- Class distribution chart 
+ <img width="765" height="573" alt="Screenshot 2025-07-13 at 8 08 02 pm" src="https://github.com/user-attachments/assets/99ad2e8f-6b20-4831-a5d1-fc429504fa20" />
 
+- Accuracy bar graph
+  <img width="922" height="542" alt="Screenshot 2025-07-13 at 8 18 01 pm" src="https://github.com/user-attachments/assets/35bbf85d-bb64-4432-9725-3296c32fcffd" />
+  
+- Confusion matrices (for each model in project)
+  
+- F1-score comparison chart
+<img width="921" height="455" alt="Screenshot 2025-07-13 at 8 18 42 pm" src="https://github.com/user-attachments/assets/e7de1cff-b901-4455-bf1d-00f4f67ebbd3" />
 
-## 🚀 Improvements
-- Use XGBoost or LightGBM
-- Add more real-world features
-- Tune hyperparameters & perform cross-validation
+---
+
+## ✅ Conclusion
+
+- Random Forest outperformed all other models, especially for the minority (fraud) class.
+- SMOTE significantly improved the ability of models to detect fraud.
+- Logistic Regression struggled with imbalanced data.
+- F1-Score was a more reliable metric than accuracy in this problem.
+
+---
+
+## 🚀 Future Improvements
+
+- Add advanced models like **XGBoost**, **LightGBM**, and **Ensemble Stacking**
+- Hyperparameter tuning using **GridSearchCV**
+- Introduce **external real-world datasets**
+- Consider **deployment using Flask or Streamlit**
+
+---
 
 ## 🧪 How to Run
-Clone the repository  
+
 ```bash
+# Clone the repo
 git clone https://github.com/shaikh-insha/credit-card-fraud-detection.git
+cd credit-card-fraud-detection
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Launch notebook
 jupyter notebook CreditCardFraudDetection.ipynb
